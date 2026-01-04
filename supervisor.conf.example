@@ -1,0 +1,11 @@
+[program:auto-send-ssl]
+command=/path/to/auto-send-ssl/.venv/bin/python main.py
+directory=/path/to/auto-send-ssl
+user=www-data
+autostart=true
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/var/log/supervisor/auto-send-ssl.log
+stdout_logfile_maxbytes=10MB
+stdout_logfile_backups=10
+environment=DAEMON_MODE="true",SCHEDULE_INTERVAL="1d"
