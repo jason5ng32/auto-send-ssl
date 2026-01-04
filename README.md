@@ -295,18 +295,4 @@ auto-send-ssl/
 
 本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
 
-## 🙏 致谢
-
-- [Resend](https://resend.com) - 简单可靠的邮件 API 服务
-- [Let's Encrypt](https://letsencrypt.org) - 免费的 SSL 证书
-- [certbot](https://certbot.eff.org) - Let's Encrypt 官方客户端
-
-## 📮 联系方式
-
-如有问题或建议，欢迎：
-- 提交 [Issue](https://github.com/yourusername/auto-send-ssl/issues)
-- 发送邮件至：your.email@example.com
-
----
-
 ⭐ 如果这个项目对你有帮助，请给它一个星标！
