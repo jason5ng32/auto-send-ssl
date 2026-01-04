@@ -4,8 +4,18 @@ directory=/path/to/auto-send-ssl
 user=www-data
 autostart=true
 autorestart=true
+startsecs=10
+startretries=3
 redirect_stderr=true
 stdout_logfile=/var/log/supervisor/auto-send-ssl.log
 stdout_logfile_maxbytes=10MB
 stdout_logfile_backups=10
+stderr_logfile=/var/log/supervisor/auto-send-ssl-error.log
+
+# 重要：必须设置环境变量
 environment=DAEMON_MODE="true",SCHEDULE_INTERVAL="1d"
+
+# 如果你的.env文件配置正确，可以不设置environment，但要确保：
+# 1. .env文件中 DAEMON_MODE=true
+# 2. .env文件中配置了所有必需的环境变量
+# 3. 程序有权限读取.env文件
