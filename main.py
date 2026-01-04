@@ -46,10 +46,7 @@ def run_check():
     logger.info("SSL证书自动发送程序启动")
     logger.info("=" * 60)
     
-    # 加载环境变量
-    load_dotenv()
-    
-    # 获取配置
+    # 获取配置（.env已在main函数中加载）
     domain = os.getenv('CERT_DOMAIN')
     cert_path = os.getenv('CERT_PATH')
     threshold_days = int(os.getenv('CERT_AGE_THRESHOLD', '30'))
@@ -147,6 +144,9 @@ def main():
     """
     主入口函数，支持一次性执行和守护模式
     """
+    # 首先加载环境变量（必须在最开始）
+    load_dotenv()
+    
     # 检查是否启用守护模式
     daemon_mode = os.getenv('DAEMON_MODE', 'false').lower() == 'true'
     
