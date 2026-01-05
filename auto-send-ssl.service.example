@@ -1,0 +1,42 @@
+[Unit]
+Description=Auto Send SSL - Automated SSL Certificate Management
+Documentation=https://github.com/jason5ng32/auto-send-ssl
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/path/to/auto-send-ssl
+ExecStart=/path/to/auto-send-ssl/.venv/bin/python main.py
+
+# 重启策略
+Restart=always
+RestartSec=10s
+StartLimitBurst=3
+StartLimitIntervalSec=60s
+
+# 环境变量配置
+# 方式1: 直接设置环境变量（推荐 - 与 supervisor 配置一致）
+Environment="DAEMON_MODE=true"
+Environment="SCHEDULE_INTERVAL=1d"
+
+# 方式2: 使用 .env 文件（如果你的 .env 已配置完整，可以取消下面这行注释）
+# EnvironmentFile=/path/to/auto-send-ssl/.env
+
+# 日志配置
+StandardOutput=append:/var/log/auto-send-ssl/auto-send-ssl.log
+StandardError=append:/var/log/auto-send-ssl/auto-send-ssl-error.log
+SyslogIdentifier=auto-send-ssl
+
+# 安全设置（可选 - 根据实际需求调整）
+# 限制进程权限
+NoNewPrivileges=true
+# 只读文件系统（可选，需要确保应用不需要写入权限）
+# ReadOnlyDirectories=/
+# 可写目录（如果启用只读文件系统）
+# ReadWriteDirectories=/path/to/auto-send-ssl/tmp /path/to/auto-send-ssl/logs
+
+[Install]
+WantedBy=multi-user.target
